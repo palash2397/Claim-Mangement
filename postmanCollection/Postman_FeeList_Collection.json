@@ -1,0 +1,166 @@
+{
+  "info": {
+    "name": "FeeList API",
+    "description": "API for managing fee list records with payment method and banking information.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create FeeList Record",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"client\": \"John Doe\",\n  \"tl\": \"Yes\",\n  \"lastTL\": \"2026-01-20\",\n  \"agreement\": \"50/50 Split\",\n  \"method\": \"Deposit\",\n  \"bank\": \"Bank of America\",\n  \"accountLast4\": \"5678\",\n  \"guide\": \"Standard Fee Guide\",\n  \"notes\": \"Premium client with consistent payments\"\n}\n"
+        },
+        "url": {
+          "raw": "{{base_url}}/feelist",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "feelist"
+          ]
+        }
+      }
+    },
+    {
+      "name": "List All FeeList Records",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/feelist",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "feelist"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get FeeList Record by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/feelist/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "feelist",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "FeeList Record ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update FeeList Record",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"agreement\": \"40/60 Split\",\n  \"lastTL\": \"2026-01-28\",\n  \"notes\": \"Agreement updated based on new negotiation\"\n}\n"
+        },
+        "url": {
+          "raw": "{{base_url}}/feelist/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "feelist",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "FeeList Record ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete FeeList Record",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/feelist/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "feelist",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "FeeList Record ID"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

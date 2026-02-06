@@ -1,0 +1,122 @@
+{ 
+    "info": { 
+        "name": "Case Management API", 
+        "description": "API for managing cases and contacts.", 
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }, 
+    "item": [ 
+        { 
+            "name": "Create Contact", 
+            "request": { 
+                "method": "POST", 
+                "header": [ 
+                    { 
+                        "key": "Content-Type", 
+                        "value": "application/json" 
+                    } 
+                ], 
+                "body": { 
+                    "mode": "raw", 
+                    "raw": "{\n  \"name\": \"John Doe\",\n  \"phone\": \"1234567890\",\n  \"email\": \"john.doe@example.com\",\n  \"status\": \"Potential\",\n  \"assigned\": \"User ID\"\n}\n" 
+                }, 
+                "url": { 
+                    "raw": "http://localhost:5000/api/contacts", 
+                    "protocol": "http", 
+                    "host": [ 
+                        "localhost" 
+                    ], 
+                    "port": "5000", 
+                    "path": [ 
+                        "api", 
+                        "contacts" 
+                    ] 
+                } 
+            } 
+        }, 
+        { 
+            "name": "List Contacts", 
+            "request": { 
+                "method": "GET", 
+                "url": { 
+                    "raw": "http://localhost:5000/api/contacts", 
+                    "protocol": "http", 
+                    "host": [ 
+                        "localhost" 
+                    ], 
+                    "port": "5000", 
+                    "path": [ 
+                        "api", 
+                        "contacts" 
+                    ] 
+                } 
+            } 
+        }, 
+        { 
+            "name": "Get Contact", 
+            "request": { 
+                "method": "GET", 
+                "url": { 
+                    "raw": "http://localhost:5000/api/contacts/:id", 
+                    "protocol": "http", 
+                    "host": [ 
+                        "localhost" 
+                    ], 
+                    "port": "5000", 
+                    "path": [ 
+                        "api", 
+                        "contacts", 
+                        ":id" 
+                    ] 
+                } 
+            } 
+        }, 
+        { 
+            "name": "Update Contact", 
+            "request": { 
+                "method": "PUT", 
+                "header": [ 
+                    { 
+                        "key": "Content-Type", 
+                        "value": "application/json" 
+                    } 
+                ], 
+                "body": { 
+                    "mode": "raw", 
+                    "raw": "{\n  \"name\": \"John Doe Updated\",\n  \"phone\": \"0987654321\",\n  \"email\": \"john.doe.updated@example.com\",\n  \"status\": \"Client\",\n  \"assigned\": \"User ID\"\n}\n" 
+                }, 
+                "url": { 
+                    "raw": "http://localhost:5000/api/contacts/:id", 
+                    "protocol": "http", 
+                    "host": [ 
+                        "localhost" 
+                    ], 
+                    "port": "5000", 
+                    "path": [ 
+                        "api", 
+                        "contacts", 
+                        ":id" 
+                    ] 
+                } 
+            } 
+        }, 
+        { 
+            "name": "Delete Contact", 
+            "request": { 
+                "method": "DELETE", 
+                "url": { 
+                    "raw": "http://localhost:5000/api/contacts/:id", 
+                    "protocol": "http", 
+                    "host": [ 
+                        "localhost" 
+                    ], 
+                    "port": "5000", 
+                    "path": [ 
+                        "api", 
+                        "contacts", 
+                        ":id" 
+                    ] 
+                } 
+            } 
+        } 
+    ] 
+}

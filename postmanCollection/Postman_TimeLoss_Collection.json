@@ -1,0 +1,166 @@
+{
+  "info": {
+    "name": "TimeLoss API",
+    "description": "API for managing time loss payments and records.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create TimeLoss Record",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"date\": \"2026-01-28\",\n  \"checkNo\": \"CHK-12345\",\n  \"payee\": \"John Doe\",\n  \"totalCheck\": \"1500.00\",\n  \"iwjFee\": \"150.00\",\n  \"paidOut\": \"1350.00\",\n  \"method\": \"Check\",\n  \"cleared\": \"No\",\n  \"bank\": \"Bank of America\",\n  \"accountLast4\": \"5678\",\n  \"notes\": \"Payment for lost wages week of Jan 20-26\",\n  \"caseId\": \"CLM-2026-001\",\n  \"clientName\": \"John Doe\"\n}\n"
+        },
+        "url": {
+          "raw": "{{base_url}}/timeloss",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "timeloss"
+          ]
+        }
+      }
+    },
+    {
+      "name": "List All TimeLoss Records",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/timeloss",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "timeloss"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get TimeLoss Record by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/timeloss/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "timeloss",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "TimeLoss Record ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update TimeLoss Record",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cleared\": \"Yes\",\n  \"notes\": \"Payment cleared on 2026-01-29\"\n}\n"
+        },
+        "url": {
+          "raw": "{{base_url}}/timeloss/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "timeloss",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "TimeLoss Record ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete TimeLoss Record",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/timeloss/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "timeloss",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "TimeLoss Record ID"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
