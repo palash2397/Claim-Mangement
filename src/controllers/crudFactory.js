@@ -12,7 +12,7 @@ export const createOne = (Model) => async (req, res, next) => {
 export const getAll = (Model) => async (req, res, next) => {
   try {
     const docs = await Model.find().sort({ createdAt: -1 });
-    res.json(new ApiResponse(200, { data: docs }, "Listed successfully"));
+    res.json(new ApiResponse(200,  docs , "Listed successfully"));
   } catch (e) {
     next(e);
   }
