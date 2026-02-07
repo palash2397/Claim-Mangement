@@ -1,7 +1,9 @@
+import { ApiResponse } from "../utils/ApiResponse.js";
+
 export const createOne = (Model) => async (req, res, next) => {
   try {
     const doc = await Model.create(req.body);
-    res.json({ ok: true, data: doc });
+    res.json(new ApiResponse(200, { data: doc }, "Created successfully"));
   } catch (e) {
     next(e);
   }
