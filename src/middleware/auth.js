@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 function auth(req, res, next) {
   const header = req.headers.authorization || "";
@@ -11,7 +12,7 @@ function auth(req, res, next) {
     req.user = decoded;
     next();
   } catch {
-    return res.status(401).json({ ok: false, message: "Invalid token" });
+    return res.status(401).json( new ApiResponse(401, {}, "Invalid token"));
   }
 }
 
