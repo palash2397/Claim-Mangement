@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 function signToken(user) {
   return jwt.sign(
@@ -15,12 +16,12 @@ export const register = async (req, res, next) => {
     const { name, email, password, role } = req.body;
 
     const exists = await User.findOne({ email });
-    if (exists) return res.status(400).json({ ok: false, message: "Email already exists" });
+    if (exists) return res.status(400).json(new ApiResponse(400, {}, "Email already exists"));
 
     const passwordHash = await bcrypt.hash(password, 10);
     const user = await User.create({ name, email, passwordHash, role });
 
-    return res.json({ ok: true, token: signToken(user), user });
+    return res.json(new ApiResponse(200, { token: signToken(user), user }, "User registered successfully"));
   } catch (e) {
     next(e);
   }
@@ -31,12 +32,12 @@ export const login = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(401).json({ ok: false, message: "Invalid credentials" });
+    if (!user) return res.status(401).json(new ApiResponse(401, {}, "Invalid credentials"));
 
     const match = await bcrypt.compare(password, user.passwordHash);
-    if (!match) return res.status(401).json({ ok: false, message: "Invalid credentials" });
+    if (!match) return res.status(401).json(new ApiResponse(401, {}, "Invalid credentials"));
 
-    return res.json({ ok: true, token: signToken(user), user });
+    return res.json(new ApiResponse(200, { token: signToken(user), user }, "User logged in successfully"));
   } catch (e) {
     next(e);
   }
