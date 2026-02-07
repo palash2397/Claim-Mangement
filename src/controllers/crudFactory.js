@@ -21,8 +21,8 @@ export const getAll = (Model) => async (req, res, next) => {
 export const getOne = (Model) => async (req, res, next) => {
   try {
     const doc = await Model.findById(req.params.id);
-    if (!doc) return res.status(404).json({ ok: false, message: "Not found" });
-    res.json({ ok: true, data: doc });
+    if (!doc) return res.status(404).json(new ApiResponse(404, {}, "Not found"));
+    res.json(new ApiResponse(200, { data: doc }, "Retrieved successfully"));
   } catch (e) {
     next(e);
   }
